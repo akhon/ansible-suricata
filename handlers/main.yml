@@ -1,13 +1,10 @@
 ---
-- name: Start Suricata
-  action: shell='start suricata'
+- name: start suricata
+  service: name=suricata state=started
 
+- name: stop suricata
+  service: name=suricata state=stopped
 
-- name: Stop Suricata
-  action: shell='stop suricata'
-
-
-- name: Restart Suricata
-  action: shell='restart suricata'
-
+- name: restart suricata
+  service: name=suricata state=restarted
 
