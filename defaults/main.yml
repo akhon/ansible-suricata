@@ -6,3 +6,5 @@ suricata_log_dir: /var/log/suricata/
 suricata_log_dir_certs: /var/log/suricata/certs/
 suricata_rules_dir: /etc/suricata/rules/
 
+suricata_install_from_sources: true
+suricata_version: 3.2.4

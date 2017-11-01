@@ -1,0 +1,12 @@
+---
+- name: Add Suricata APT repository
+  apt_repository:
+    repo: "ppa:oisf/suricata-stable"
+    state: present
+
+- name: Install required packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - suricata
+    - oinkmaster
+    - sysv-rc-conf

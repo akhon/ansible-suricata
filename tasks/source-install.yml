@@ -1,0 +1,52 @@
+---
+- name: Install required packages
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - libpcre3
+    - libpcre3-dbg
+    - libpcre3-dev
+    - build-essential
+    - autoconf
+    - automake
+    - libtool
+    - libpcap-dev
+    - libnet1-dev
+    - libyaml-0-2
+    - libyaml-dev
+    - zlib1g
+    - zlib1g-dev
+    - libcap-ng-dev
+    - libcap-ng0
+    - make
+    - libmagic-dev
+    - libjansson-dev
+    - libjansson4
+    - pkg-config
+    - libnetfilter-queue-dev
+    - libnetfilter-queue1
+    - libnfnetlink-dev
+    - libnfnetlink0
+
+- name: Download and unarchive suricata
+  get_url:
+    url: "http://www.openinfosecfoundation.org/download/suricata-{{suricata_version}}.tar.gz"
+    dest: "/opt/suricata-{{suricata_version}}.tar.gz"
+
+- name: configure sources
+  shell: ./configure --enable-nfqueue --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+  args:
+    chdir: "/opt/suricata-{{suricata_version}}"
+
+- name: make install sources
+  shell: make && make install-full
+  args:
+    chdir: "/opt/suricata-{{suricata_version}}"
+
+- name: make install sources
+  shell: ldconfig
+  args:
+    chdir: "/opt/suricata-{{suricata_version}}"
