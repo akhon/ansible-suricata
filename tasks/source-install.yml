@@ -32,9 +32,10 @@
     - libnfnetlink0
 
 - name: Download and unarchive suricata
-  get_url:
-    url: "http://www.openinfosecfoundation.org/download/suricata-{{suricata_version}}.tar.gz"
-    dest: "/opt/suricata-{{suricata_version}}.tar.gz"
+  unarchive:
+    src: "http://www.openinfosecfoundation.org/download/suricata-{{suricata_version}}.tar.gz"
+    dest: "/opt"
+    remote_src: yes
 
 - name: configure sources
   shell: ./configure --enable-nfqueue --prefix=/usr --sysconfdir=/etc --localstatedir=/var
