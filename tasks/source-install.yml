@@ -30,6 +30,8 @@
     - libnetfilter-queue1
     - libnfnetlink-dev
     - libnfnetlink0
+    - oinkmaster
+    - sysv-rc-conf
 
 - name: Download and unarchive suricata
   unarchive:

@@ -31,14 +31,7 @@
     - deploy-packages
 
 - name: Check if irqbalance is enabled
-  command: sysv-rc-conf  --list irqbalance
-  register: chkconfig_status
-  tags: disable-network-offloading
-
-- name: DISABLE irqbalance if enabled
-  command: chkconfig irqbalance off
-  ignore_errors: True
-  when: chkconfig_status.stdout.find(":on") != -1
+  command: sysv-rc-conf irqbalance off
   tags: disable-network-offloading
 
 - name: Deploy suricata.yaml
