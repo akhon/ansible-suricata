@@ -85,12 +85,12 @@ outputs:
   # Extensible Event Format (nicknamed EVE) event log in JSON format
   - eve-log:
       enabled: yes
-      type: syslog #file|syslog|unix_dgram|unix_stream
+      type: file #file|syslog|unix_dgram|unix_stream
       filename: eve.json
       # the following are valid when type: syslog above
       identity: "suricata"
       facility: local5
-      level: Info ## possible levels: Emergency, Alert, Critical,
+      level: Warning ## possible levels: Emergency, Alert, Critical,
                    ## Error, Warning, Notice, Info, Debug
       types:
         - alert
@@ -227,6 +227,7 @@ outputs:
       # suricata) will be used.
       #identity: "suricata"
       facility: local5
+      level: Warning
       #level: Info ## possible levels: Emergency, Alert, Critical,
                    ## Error, Warning, Notice, Info, Debug
 
