@@ -77,7 +77,7 @@ outputs:
 
   # a line based alerts log similar to Snort's fast.log
   - fast:
-      enabled: yes
+      enabled: no
       filename: fast.log
       append: yes
       #filetype: regular # 'regular', 'unix_stream' or 'unix_dgram'
@@ -85,27 +85,24 @@ outputs:
   # Extensible Event Format (nicknamed EVE) event log in JSON format
   - eve-log:
       enabled: yes
-      type: file #file|syslog|unix_dgram|unix_stream
+      type: syslog #file|syslog|unix_dgram|unix_stream
       filename: eve.json
       # the following are valid when type: syslog above
       identity: "suricata"
       facility: local5
-      level: Warning ## possible levels: Emergency, Alert, Critical,
+      level: Alert ## possible levels: Emergency, Alert, Critical,
                    ## Error, Warning, Notice, Info, Debug
       types:
         - alert
-        - http:
-            extended: yes     # enable this for extended logging information
-        - dns
+        - http
         - tls:
             extended: yes     # enable this for extended logging information
         - files:
             force-magic: yes   # force logging magic on all logged files
             force-md5: yes     # force logging of md5 checksums
-        #- drop
+        - drop
         - ssh
         - smtp
-        - flow
 
   # alert output for use with Barnyard2
   - unified2-alert:
@@ -222,12 +219,12 @@ outputs:
 
   # a line based alerts log similar to fast.log into syslog
   - syslog:
-      enabled: no
+      enabled: yes
       # reported identity to syslog. If ommited the program name (usually
       # suricata) will be used.
       #identity: "suricata"
       facility: local5
-      level: Warning
+      level: Alert
       #level: Info ## possible levels: Emergency, Alert, Critical,
                    ## Error, Warning, Notice, Info, Debug
 
