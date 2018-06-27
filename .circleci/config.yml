@@ -13,7 +13,7 @@ jobs:
           command: |
             bundle install
       - run: 
-          name: tests
+          name: Tests
           command: |
-            pwd
+            ls -l
             kitchen test
